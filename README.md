@@ -22,7 +22,7 @@ git clone https://github.com/saraalgo/Corn-2023.git
 2. Create and activate python environment if you do not count with the beforehand mentioned Python version. Otherwise, you could skip this step.
 
 ```sh
-python3.8 -m venv ANN-GA/
+python3.8 -m venv Corn-2023/
 source bin/activate
 ```
 
@@ -34,28 +34,28 @@ python -m pip install -r requirements.txt
 
 ## Project workflow
 
-1. [Preprocess data](#1.-Preprocess-data)
-    - [Load data to unify formats](#1.1-Load-data-an-unify-formats)
-    - [Get data to introduce to the model](#1.2-Get-data-to-introduce-to-the-model)
-    - [Outputs](#1.3-Outputs)
+1. [Preprocess data](#1-preprocess-data)
+    - [Load data to unify formats](#11-load-data-an-unify-formats)
+    - [Get data to introduce to the model](#12-get-data-to-introduce-to-the-model)
+    - [Outputs](#13-outputs)
 
-2. [Model](#2.-Model)
-    - [Design and train the model](#2.1-Design-and-train-the-model)
-    - [Outputs](#2.2-Output)
+2. [Model](#2-model)
+    - [Design and train the model](#21-design-and-train-the-model)
+    - [Outputs](#22-outputs)
 
-3. [Predict](#3.-predict)
-    - [Get predictions and feature importance of features](#3.1-Get-predictions,-metrics-and-feature-importance)
-    - [Outputs](#3.2-Outputs)
+3. [Predict](#3-predict)
+    - [Get predictions and feature importance of features](#31-get-predictions-metrics-and-feature-importance)
+    - [Outputs](#32-outputs)
 
 
 ### 1. Preprocess data
 This is done in the folder **01-Preprocessing**.
 
 #### 1.1 Load data an unify formats
-In the [*Load-data.ipynb*](https://github.com/saraalgo/ANN-GA/blob/main/01-Preprocessing/Load-data.ipynb) notebook is shown how the external data is loaded from the orignial formats and it is stored in the folder **data**.
+In the [*Load-data.ipynb*](https://github.com/saraalgo/Corn-2023/blob/main/01-Preprocessing/Load-data.ipynb) notebook is shown how the external data is loaded from the orignial formats and it is stored in the folder **data**.
 
 ### 1.2 Get data to introduce to the model
-Here in [*Preprocessing.ipynb*](https://github.com/saraalgo/ANN-GA/blob/main/01-Preprocessing/Preprocessing.ipynb) the data found in the benchmarking as more efective for the best model in merged to be introduced to the model.
+Here in [*Preprocessing.ipynb*](https://github.com/saraalgo/Corn-2023/blob/main/01-Preprocessing/Preprocessing.ipynb) the data found in the benchmarking as more efective for the best model in merged to be introduced to the model.
 
 ### 1.3 Outputs
 The final data can be found in can be found in **01-Preprocessing/results/** as *data.pkl*.
@@ -64,7 +64,7 @@ The final data can be found in can be found in **01-Preprocessing/results/** as 
 This is carried out in the folder **02-Model**.
 
 #### 2.1 Design and train the model
-The [*02-Model/best_model.ipynb*](https://github.com/saraalgo/ANN-GA/blob/main/02-Model/best_model.ipynb) notebook follows the next pipeline:
+The [*02-Model/best_model.ipynb*](https://github.com/saraalgo/Corn-2023/blob/main/02-Model/best_model.ipynb) notebook follows the next pipeline:
 1. Load data
 2. Train model by state
 3. Plot training metrics performance
@@ -76,7 +76,7 @@ Each step is further explained during the execution. **Is important to bare in m
 #### 2.2 Outputs
 After run the previous notebook, a new folder called **02-Model/results** will appear with the next subfolders:
 
-[**02-Model/results/best_model/plots**](https://github.com/saraalgo/ANN-GA/blob/main/02-Model/results/best_model/plots)
+[**02-Model/results/best_model/plots**](https://github.com/saraalgo/Corn-2023/blob/main/02-Model/results/best_model/plots)
 
 Inside, another two folders will store graphical information about how the training have evolve over the epochs of the LSTM model. In this regard, as there will be a model per state, an example of **Missisipi** results in this folders will be shown as example:
 
@@ -88,7 +88,7 @@ Inside, another two folders will store graphical information about how the train
 
 ![Metrics evolution in Missisipi](02-Model/results/best_model/plots/training/training_history_MISSISSIPPI.png)
 
-[**02-Model/results/best_model/res**](https://github.com/saraalgo/ANN-GA/blob/main/02-Model/results/best_model/res)
+[**02-Model/results/best_model/res**](https://github.com/saraalgo/Corn-2023/blob/main/02-Model/results/best_model/res)
 
 This subfolder will get the final dictionaries for all states storing all relevant data of the training process:
 - Data per state used as input: *data_per_state.pkl*.
@@ -100,7 +100,7 @@ This subfolder will get the final dictionaries for all states storing all releva
 ### 3. Predict
 
 #### 3.1 Get predictions, metrics and feature importance
-The notebook [*best_model_pred.ipynb*](https://github.com/saraalgo/ANN-GA/blob/main/03-Predict/best_model_pred.ipynb) provides a pipeline to get the following:
+The notebook [*best_model_pred.ipynb*](https://github.com/saraalgo/Corn-2023/blob/main/03-Predict/best_model_pred.ipynb) provides a pipeline to get the following:
 
 1. Feature importance of each state model
     - Check feature importance in all states
@@ -110,16 +110,16 @@ The notebook [*best_model_pred.ipynb*](https://github.com/saraalgo/ANN-GA/blob/m
 
 Each step is further explained during its execution.
 
-#### 2.2 Outputs
-From this folder the following documents are stored in [**03-Predict/results**](https://github.com/saraalgo/ANN-GA/blob/main/03-Predict/results/):
+#### 3.2 Outputs
+From this folder the following documents are stored in [**03-Predict/results**](https://github.com/saraalgo/Corn-2023/blob/main/03-Predict/results/):
 
 - *best_model.xlsx*: it is a excel file with a sheet with the final training metrics for the model on each state and the prediction of the output for 2023.
 - *feature-importance-all-states.png*: which gather the feature importance obtained from input perturbation for the features of all models at once, highlighting the top 5 more relevant for all 48 states. To calculate each feature value, it were calculated for each state the number of features that had a higher perturbation of twice the baseline MSE, setting that as threshold. Then, the counting of in how many states that feature was important were summed and represented in this figure.
 
 ![Feature importance all states](03-Predict/results/feature-importance-all-states.png)
 
-- [**03-Predict/results/feature-importance-train/**](https://github.com/saraalgo/ANN-GA/blob/main/03-Predict/results/feature-importance-train/): in this subfolder each state mse (including the baseline mse obtained during training) was calculated for each feature being perturbated. Moreover, a vertical red line is included, calculated from the threshold stablished for each state that would imply a high importance of that feature if its surpassed (above set as twice baseline mse). An example of this is shown again with **Missisipi**:
+- [**03-Predict/results/feature-importance-train/**](https://github.com/saraalgo/Corn-2023/blob/main/03-Predict/results/feature-importance-train/): in this subfolder each state mse (including the baseline mse obtained during training) was calculated for each feature being perturbated. Moreover, a vertical red line is included, calculated from the threshold stablished for each state that would imply a high importance of that feature if its surpassed (above set as twice baseline mse). An example of this is shown again with **Missisipi**:
 
 ![Feature importance in the Missisipi model](03-Predict/results/feature-importance-train/MSE_fi_MISSISSIPPI.png)
 
-- *feature-importance-by-state.pdf*: unify all files of each state with the feature importance information that are contained in the **03-Predict/results/feature-importance-train**.
+- [*feature-importance-by-state.pdf*](https://github.com/saraalgo/Corn-2023/blob/main/03-Predict/results/feature-importance-by-state.pdf): unify all files of each state with the feature importance information that are contained in the **03-Predict/results/feature-importance-train**.
