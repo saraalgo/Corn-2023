@@ -1,0 +1,11 @@
+pandas
+xlrd
+openpyxl
+datetime
+fastparquet
+pandas_profiling
+ipywidgets
+tensorflow
+sklearn
+seaborn
+matplotlib
